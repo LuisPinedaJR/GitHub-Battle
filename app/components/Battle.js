@@ -1,5 +1,6 @@
 var React = require('react');
 var PropTypes = require('prop-types');
+var Link = require ('react-router-dom').Link;
 
 function PlayerPreview (props){
   return(
@@ -66,12 +67,11 @@ class PlayerInput extends React.Component {
             type='text'
             autoComplete='off'
             value = {this.state.username}
-            onChange = {this.handleChange}
-            / >
+            onChange = {this.handleChange}/>
             <button
               className='button'
               type='submit'
-              disabled={ !this.state.username} >
+              disabled={ !this.state.username}>
                   Submit
             </button>
         </form>
@@ -81,7 +81,7 @@ class PlayerInput extends React.Component {
 PlayerInput.propTypes = {
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  onSubmit: PropTypes.func.isRequired
+  onSubmit: PropTypes.func.isRequired,
 }
 
 PlayerInput.defaultProps = {
@@ -112,14 +112,15 @@ class Battle extends React.Component {
 
 handleReset(id){
   this.setState(function(){
-    var newState = { };
-    newState [ id + 'Name' ] = " ";
+    var newState = {};
+    newState [ id + 'Name' ] = ' ';
     newState [ id + 'Image' ] = null;
     return newState;
   });
 }
 
   render(){
+    var match = this.props.match;
     var playerOneName = this.state.playerOneName;
     var playerTwoName = this.state.playerTwoName;
     var playerOneImage = this.state.playerOneImage;
@@ -158,7 +159,17 @@ handleReset(id){
                     id='playerTwo'
                     />}
           </div>
-      </div>
+        </div>
+          // {playerOneImage && playerTwoImage &&
+          //   <Link
+          //     className='button'
+          //     to={{
+          //       pathname: match.url + '/results',
+          //       search: '?playerOneName=' + playerOneName + '&playerTwoName=' + playerTwoName
+          //     }}>
+          //         Battle
+          //   </Link>
+      // </div>
     )
   }
 }
