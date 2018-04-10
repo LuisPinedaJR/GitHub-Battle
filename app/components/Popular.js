@@ -10,7 +10,7 @@ function  SelectedLanguage (props){
         {languages.map(function (lang){
           return(
               <li
-                style = { lang === props.selectedLanguage ? { color: '#d0021b'}: null }
+                style = { lang === props.selectedLanguage ? { color: '#d0021b'} : null }
                 onClick = {props.onSelect.bind(null, lang)}
                 key = {lang}>
                     {lang}
@@ -58,7 +58,7 @@ RepoGrid.propTypes = {
 
 class Popular extends React.Component{
   constructor (props){
-    super(props);
+    super();
     this.state = {
       selectedLanguage: 'All',
       repos: null,
@@ -96,7 +96,7 @@ updateLanguage(lang){
           onSelect = { this.updateLanguage}
           />
           {!this.state.repos
-            ? <p>LOADING</p>
+            ? <p>LOADING!</p>
           : <RepoGrid repos= {this.state.repos} /> }
         </div>
     )
