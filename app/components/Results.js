@@ -1,7 +1,7 @@
 var React = require('react');
 
 class Results extends React.Component {
-  render(){
+  render() {
     return (
       <div>Results!</div>
     )
